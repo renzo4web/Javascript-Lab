@@ -16,5 +16,3 @@ btns.forEach(btn => {
   btn.addEventListener('click', handleClick);
   btn.addEventListener('focus', handleClick);
 });
-
-
