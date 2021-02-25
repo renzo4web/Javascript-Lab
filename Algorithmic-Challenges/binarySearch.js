@@ -10,13 +10,11 @@ function search(arr, n) {
         if (arr[i] === n) {
             return `Found on index ${i}`;
         } else if (n < mid) {
-            temp = mid
-            top = temp
+            top = mid
             mid = (top - mid) / 2
 
         } else {
-            temp = mid
-            inf = temp
+            inf = mid
             mid = (inf - mid) / 2
         }
 
@@ -27,4 +25,4 @@ function search(arr, n) {
 
 }
 
-console.log(search([1, 5, 9, 45, 60, 88], 9));
+console.log(search([1, 5, 9, 45, 60, 88], 60));
