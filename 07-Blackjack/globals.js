@@ -1,10 +1,7 @@
 const btnTakeCard  = document.getElementById("takeCard")
 const btnStop  = document.getElementById("stop")
 const btnNewGame  = document.getElementById("resetgame")
-const playerCards =  document.querySelectorAll(".cards .player img")
-const machineCards =  document.querySelectorAll(".cards .machine img")
+const playerCards =  document.querySelector(".cards .player")
+const machineCards =  document.querySelector(".cards .machine")
 const playerScore = document.getElementById("playerScore")
 const machineScore = document.getElementById("machineScore")
-
-
-
