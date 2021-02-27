@@ -1,4 +1,11 @@
 let startMachine;
+let player = {
+  score: 0,
+  stack: [],
+  win: false,
+  cardsTaken: 0,
+  stop: false,
+};
 
 let human;
 
@@ -6,20 +13,12 @@ let machine;
 
 const generatePlayers = () => {
   human = {
-    name: 'Humano',
-    score: 0,
-    stack: [],
-    win: false,
-    cardsTaken: 0,
-    stop: false,
+    name: 'Human',
+    ...player,
   };
   machine = {
     name: 'Terminator',
-    score: 0,
-    stack: [],
-    win: false,
-    cardsTaken: 0,
-    stop: false,
+    ...player,
   };
 
 };
@@ -47,9 +46,9 @@ const generateDeck = (who) => {
 const createCard = (player, domContainer) => {
   const cardImg = document.createElement('img');
   cardImg.src = `./cartas/${player.stack}.png`;
-  domContainer.insertAdjacentElement('beforeend', cardImg);
-  player.cardsTaken++;
+  domContainer.appendChild(cardImg);
   updateScoreLabel(player);
+  player.cardsTaken++;
 };
 
 const updateScoreLabel = (player) => {
@@ -59,18 +58,6 @@ const updateScoreLabel = (player) => {
 };
 
 const machineStop = () => clearInterval(startMachine);
-
-const stopPlaying = (who) => {
-
-  if (who.score === 21) {
-    console.log(who);
-    alert(`${who.name} WIN!!!`);
-    machineStop();
-  } else {
-    btnTakeCard.disabled = true;
-  }
-
-};
 
 const scoreOnGame = (playing, adversary) => {
 
@@ -95,10 +82,6 @@ const scoreOnGame = (playing, adversary) => {
 
 };
 
-btnStop.addEventListener('click', playerStopGame);
-
-btnTakeCard.addEventListener('click', handleClick);
-
 const machinePlays = () => {
   scoreOnGame(machine, human);
 
@@ -115,13 +98,13 @@ const machinePlays = () => {
 
 const resetGame = () => {
   [
-    playerCards,
     playerScore,
-    machineCards,
     machineScore].
       forEach(
           element => element.innerHTML = '');
+  imgCards.forEach(x => x.innerHTML = '');
   btnTakeCard.disabled = false;
+
 };
 
 const playerStopGame = () => {
@@ -147,6 +130,8 @@ const handleClick = () => {
 
 };
 
+btnTakeCard.addEventListener('click', handleClick);
+btnStop.addEventListener('click', playerStopGame);
 btnNewGame.addEventListener('click', () => {
   generatePlayers();
   resetGame();
