@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Problema 01</title>
+</head>
+
+<style>
+        input{
+            display: block;
+            margin: 1em 0;
+        }
+
+</style>
+<body>
+
+<form id="worksForms">
+    <label for="name">Nombre</label>
+    <input type="text" id="name">
+    <label for="workedHours">Horas Trabajadas</label>
+    <input type="number" id="workedHours" min="0" value="180">
+    <label for="hoursPrice">Pago x hora</label>
+    <input type="number" id="hoursPrice" min="0" value="60">
+    <label for="children">Hijos menores de 18 años</label>
+    <input type="number" id="children" min="0" value="2">
+    <button id="btn-submit">Submit</button>
+</form>
+
+      <section id="results">
+
+      </section>
+
+<script src="main.js" ></script>
+</body>
+</html>
