@@ -1,0 +1,20 @@
+{
+  "name": "webpack-inicial",
+  "version": "1.0.0",
+  "description": "skeleton wp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack",
+    "start": "webpack-dev-server --open"
+  },
+  "author": "Renzo Barrios",
+  "license": "ISC",
+  "devDependencies": {
+    "html-loader": "^2.1.1",
+    "html-webpack-plugin": "^5.2.0",
+    "webpack": "^5.24.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
