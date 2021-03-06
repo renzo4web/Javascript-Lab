@@ -1,3 +1,3 @@
-import { test } from "./js/components";
-
-test("Renzo")
+import { test } from './js/components';
+import './styles.css';
+test('Renzo');
