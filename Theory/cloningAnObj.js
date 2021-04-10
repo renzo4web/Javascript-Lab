@@ -5,10 +5,10 @@ const circle = {
   },
 };
 
-const another = { ...circle , color : "yellow" };
+const another = { ...circle, color: 'yellow' };
 
-another.radius  = 5
+another.radius = 5;
 
 console.log(another);
-console.log("----------");
+console.log('----------');
 console.log(circle);

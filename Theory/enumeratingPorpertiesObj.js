@@ -14,6 +14,5 @@ for (const iterator of Object.keys(circle)) {
 }
 
 // To Check if a Obj has a property we can use
-
-'wokeUp' in circle && console.log('YES'); // ""
+console.log('wokeUp' in circle); // ""
 console.log('radius' in circle); // true
