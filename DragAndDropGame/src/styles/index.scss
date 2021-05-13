@@ -1,0 +1,36 @@
+$body-color: slateblue;
+
+body {
+  color: $body-color;
+  font-family: sans-serif;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 600px;
+  background-color: #000;
+  justify-content: space-between;
+  align-content: center;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.5rem;
+    width: 3.5rem;
+    font-size: 3rem;
+  }
+}
+
+.box {
+  cursor: pointer;
+  border: 1px solid yellow;
+}
