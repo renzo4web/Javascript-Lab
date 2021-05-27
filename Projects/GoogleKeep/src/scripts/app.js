@@ -29,6 +29,16 @@ export class App {
     });
     document.body.addEventListener('mouseover', this.openToltip.bind(this));
     document.body.addEventListener('mouseout', this.closeToltip.bind(this));
+
+    this.$colorTooltip.addEventListener('mouseover', function () {
+      this.style.display = 'flex';
+    });
+    this.$colorTooltip.addEventListener('mouseout', function () {
+      this.style.display = 'none';
+    });
+
+    this.$colorTooltip.addEventListener('click', this.handleClickTooltip.bind(this));
+
     this.$form.addEventListener('submit', this.handleForm.bind(this));
     this.$modalCloseBtn.addEventListener('click', this.closeModal.bind(this));
   }
@@ -47,20 +57,33 @@ export class App {
     }
   }
 
+  handleClickTooltip({ target }) {
+    const hasColorClicked = target.classList.contains('color-option');
+    if (!hasColorClicked) return;
+
+    console.log(target.closest('.note'));
+    target.closest('.note');
+  }
+
+  noteEditColor(color) {
+    this.notes = this.notes.map((note) =>
+      note.id === Number(this.id) ? { ...note, text, title, color } : note
+    );
+
+    console.log(this.notes);
+  }
+
   openToltip({ target }) {
     if (!target.classList.contains('toolbar-color')) return;
-    console.log(target.nextElementSibling.dataset.id);
     this.id = target.nextElementSibling.dataset.id;
     const noteCoords = target.getBoundingClientRect();
     const horizontal = noteCoords.left + window.scrollX;
-    const vertical = noteCoords.top + window.scrollY;
-    this.$colorTooltip.style.transform = `translate(${horizontal}px,${0}px)`;
+    this.$colorTooltip.style.transform = `translate(${horizontal - 20}px,-20px)`;
     this.$colorTooltip.style.display = `flex`;
   }
 
   closeToltip({ target }) {
-    if (!target.classList.contains('toolbar-color')) return;
-
+    if (target.classList.contains('toolbar-color')) return;
     this.$colorTooltip.style.display = `none`;
   }
 
@@ -80,9 +103,6 @@ export class App {
   }
 
   editNote() {
-    console.log(this.notes);
-    console.log(this.text, this.title, this.id);
-
     const title = this.$modalTitle.value;
     const text = this.$modalText.value;
 
