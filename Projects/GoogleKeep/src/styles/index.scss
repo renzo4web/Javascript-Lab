@@ -40,9 +40,7 @@ main {
 #form-container {
   border-radius: 8px;
   border: 0.5px solid #d3d3d3;
-  box-shadow:
-    0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
   margin: 32px auto 16px auto;
   max-width: 496px;
   transition-duration: 0.218s;
@@ -62,11 +60,6 @@ main {
 
 .form-open {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-.form-open #note-title,
-.form-open #form-buttons {
-  display: block;
 }
 
 header {
@@ -223,12 +216,11 @@ input:focus {
   transition-duration: 0.218s;
   transition-property: background, border, opacity, box-shadow, transform;
   transition-timing-function: ease-in;
+  padding: 1em;
 }
 
 .note:hover {
-  box-shadow:
-    0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 1px 3px 1px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
 }
 
 .note-title {
@@ -271,10 +263,7 @@ input:focus {
   line-height: 26px;
   margin: 4px 0;
   position: relative;
-  transition:
-    opacity 0.218s ease-in-out,
-    background-color 0.218s ease-in-out,
-    box-shadow 0.218s ease-in-out;
+  transition: opacity 0.218s ease-in-out, background-color 0.218s ease-in-out, box-shadow 0.218s ease-in-out;
 }
 
 .toolbar:hover {
@@ -339,9 +328,7 @@ input:focus {
 }
 
 .modal-content {
-  box-shadow:
-    0 1px 3px 0 rgba(60, 64, 67, 0.302),
-    0 4px 8px 3px rgba(60, 64, 67, 0.149);
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -397,4 +384,9 @@ input:focus {
 
 #teal {
   background: #a7ffeb;
+}
+
+.form-open #note-title,
+.form-open #form-buttons {
+  display: block;
 }
