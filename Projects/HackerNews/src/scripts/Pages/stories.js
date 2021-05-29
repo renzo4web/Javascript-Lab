@@ -1,15 +1,23 @@
 import view from "../Utils/view";
+import {Story} from "../components/Story";
 
 export async function Stories(path) {
     const stories = await getStories(path).catch(console.warn);
-    view.innerHTML = `<div>${stories}</div>`;
+    console.log(stories);
+    const hasStories = stories.length > 0;
+    view.innerHTML = `<div>
+            ${hasStories 
+        ? stories.map((story, i) => Story({...story, index: i + 1}))
+               .join('') 
+        : "Empty"}
+                </div>`;
 }
 
 const getStories = async (path) => {
     let queryPath = '';
     switch (path) {
         case '/':
-            queryPath = "newstories";
+            queryPath = "beststories";
             break;
         case '/top' :
             queryPath = "topstories";
@@ -30,8 +38,10 @@ const getStories = async (path) => {
     const ids = await idStories.json();
 
 
-    const promises = await Promise.all(ids.slice(0, 50).map(id => fetch(` https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)));
-    const results = await Promise.all(promises.map(promise => promise.json()));
+    const promises = await Promise.all(
+        ids
+            .slice(0, 50)
+            .map(id => fetch(` https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)));
+    return await Promise.all(promises.map(promise => promise.json()));
 
-    console.log(results);
 };
