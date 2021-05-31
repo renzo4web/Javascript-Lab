@@ -1,41 +1,43 @@
 import view from "../Utils/view";
 import {Story} from "../components/Story";
+import {Comment} from "../components/Comment";
 
 export async function Item() {
     const [, id] = window.location.hash.split('?id=');
 
-    const comments = await getSingleStoryComments(id).catch(console.warn);
     const story = await getStory(id);
+    const {comments} = story;
+
+    if (!comments) {
+        view.innerHTML = `<div class="error">Error fetching story</div>`;
+        return;
+    }
+
+    console.log(comments);
+    const hasComments = comments.length > 0;
+
 
     view.innerHTML = `<div>
 
-<div>
-${Story(story)}
-</div>
-
-            ${comments.map(comments => {
-        const {author, comment_text, created_at} = comments;
-        return `
-            <div>${author}</div>
-           <div>${comment_text}</div>
-           <div>${created_at}</div>
-                `;
-    }).join('')}
-        
+                <div>
+                    ${Story({...story, index: 1})}
+            </div>
+            <hr/>
+        ${hasComments ? comments.map(Comment).join('') : "No Comments"}
 </div>`;
 }
 
-const getSingleStoryComments = async (id) => {
-    const resp = await fetch(`https://hn.algolia.com/api/v1/search?tags=comment,story_${id}`);
-    const {hits} = await resp.json();
-    return hits;
-};
 
 const getStory = async (id) => {
 
     try {
-        const resp = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+        const resp = await fetch(`https://api.hackerwebapp.com/item/${id}`);
         const story = await resp.json();
+
+        if (!story) {
+            throw Error('Id Invalid');
+        }
+
         return story;
     } catch (e) {
         console.warn(e);

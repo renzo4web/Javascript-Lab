@@ -1,4 +1,5 @@
 import {Item} from "./Pages/item";
+import {Favorite} from "./Pages/Favorite";
 
 const Navigo = require("navigo");
 const {Stories} = require("./Pages/stories");
@@ -18,6 +19,7 @@ export class RouterHandler {
             {path: '/ask', page: Stories},
             {path: '/show', page: Stories},
             {path: '/item', page: Item},
+            {path: '/favorites', page: Favorite},
         ];
 
         routes.forEach(({path, page}) => {

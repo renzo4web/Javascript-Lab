@@ -1,33 +1,37 @@
 import {getDomain, parseTimestamp} from "../Utils/view";
 
 export const Story = (story) => {
-    const {index,
+    const {
+        index,
         url,
         title,
-        score,
-        by: user,
+        points,
+        user,
         time: timestamp,
         id,
-        descendants
+        domain,
+        time_ago,
+        comments_count,
+        isFavorite
     } = story;
     return `<div tabindex="${index - 1}" class="story" >
 <div>
- <span class="gray">${index}</span>.<span class="upvote">▲</span>
+ <span class="gray">${index ? index : ""}</span>.<span class="upvote">▲</span>
  <a href="${url}">${title}</a>
- <span>(${url && getDomain(url)})</span>  
+ <span>(${domain})</span>  
 </div>
 
 <div>
     <div class="gray">
-        ${score} points by ${user} ${parseTimestamp(timestamp)}
+        ${points} points by ${user} ${time_ago}
         |
         <a data-navigo href="/#item?id=${id}">
-        ${descendants}
+        ${comments_count}
         </a>
         |
-        <span class="favorite">
+        <span data-story='${JSON.stringify(story)}' class="favorite">
         <img class="heart" alt="add to favorites" src="https://microicon-clone.vercel.app/heart/ccc">
-        Add to Favorites
+        ${isFavorite ? "Remove From Favorite" : "Add to Favorite"}
 </span>
 </div>
 </div>
