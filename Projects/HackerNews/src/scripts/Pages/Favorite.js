@@ -12,7 +12,7 @@ export const Favorite = () => {
     view.innerHTML = `
                 ${
         hasFavorites
-            ? favorites.map(story => Story({...story, isFavorite: checkFavorite(story)})).join('')
+            ? favorites.map(story => Story({...story, isFavorite: checkFavorite(favorites, story)})).join('')
             : "<p>No Favorites For The Moment<p>"
     }           
     `;

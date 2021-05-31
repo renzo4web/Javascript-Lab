@@ -18,27 +18,6 @@ export async function Stories(path) {
         : "Empty"}
                 </div>`;
 
-    // Event Listeners Favorite
-
-    document.body.addEventListener('click', async ({target}) => {
-
-        if (target.classList.contains('favorite')) {
-            const {favorites} = store.getState();
-            const story = JSON.parse(target.dataset.story);
-            const isStoryFavorite = checkFavorite(favorites, story);
-
-            store.dispatch(
-                {
-                    type: isStoryFavorite ? 'REMOVE_FAVORITE' : 'ADD_FAVORITE',
-                    payload: {favorite: story}
-                }
-            );
-
-
-            await Stories(path);
-        }
-
-    });
 
 }
 
@@ -66,4 +45,24 @@ const getStories = async (path) => {
     const res = await fetch(`https://api.hackerwebapp.com/${queryPath}`);
     const stories = await res.json();
     return stories;
+};
+
+export const handleClickFavorite = async ({target}) => {
+
+    if (target.classList.contains('favorite')) {
+        const {favorites} = store.getState();
+        const story = JSON.parse(target.dataset.story);
+        const isStoryFavorite = checkFavorite(favorites, story);
+
+        store.dispatch(
+            {
+                type: isStoryFavorite ? 'REMOVE_FAVORITE' : 'ADD_FAVORITE',
+                payload: {favorite: story}
+            }
+        );
+
+        const [, path] = window.location.hash.split('#');
+        await Stories(path);
+    }
+
 };

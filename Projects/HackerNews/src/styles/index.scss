@@ -134,9 +134,9 @@ input {
   white-space: nowrap;
   padding: 0.5rem;
   color: black;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  display: flex;
 }
 
 .header-title {
