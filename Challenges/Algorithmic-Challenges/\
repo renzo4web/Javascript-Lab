@@ -1,0 +1,80 @@
+function escape(carpark) {
+  // get start position
+
+  let two = [];
+  let one = [];
+
+  let current;
+
+  let move = "";
+  let currentLeft;
+  let currentRight;
+
+  for (current = 0; current < carpark.length; ++current) {
+    let person = carpark[current].findIndex((e) => e === 2);
+    let startcase = carpark[current].findIndex((e) => e === 1);
+
+    if (person >= 0 && startcase >= 0) {
+      if (person > startcase) {
+        move += "L";
+      } else if (startcase > person) {
+        move += "R";
+      } else if (startcase === person) {
+        move += "D";
+      }
+    }
+  }
+
+  // Checl left
+  //
+  //
+  const result = move.split("").reduce((acc, val) => {
+    acc[val] = acc[val] + 1 || 1;
+
+    return acc;
+  }, {});
+
+  return result;
+}
+
+let carpark;
+let result;
+
+carpark = [
+  [1, 0, 0, 0, 2],
+  [0, 0, 0, 0, 0],
+];
+result = ["L4", "D1", "R4"];
+
+console.log(
+  escape([
+    [2, 0, 0, 1, 0],
+    [0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0],
+  ]),
+  "Result",
+  ["R3", "D2", "R1"]
+);
+
+console.log(
+  escape([
+    [0, 2, 0, 0, 1],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0],
+  ]),
+  "REsult",
+  ["R3", "D3"]
+);
+
+//carpark = [
+//[1, 0, 0, 0, 2],
+//[0, 0, 0, 0, 1],
+//[1, 0, 0, 0, 0],
+//[0, 0, 0, 0, 0],
+//];
+//result = ["L4", "D1", "R4", "D1", "L4", "D1", "R4"];
+
+//carpark = [[0, 0, 0, 0, 2]];
+//result = [];
+console.log(escape(carpark), "---", result);
